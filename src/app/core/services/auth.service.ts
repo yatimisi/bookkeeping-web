@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, OperatorFunction } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { LocalStorageKeys } from '@core/enums/local-storage-keys.enum';
 import { Token } from '@core/models/token.model';
@@ -16,6 +16,9 @@ export class AuthService {
   urls = {
     login: 'token',
     refresh: 'token/refresh',
+    forgot: 'users/password-reset',
+    passwordSet: 'users/password-set',
+    join: 'users',
   };
 
   constructor(private httpService: HttpService) { }
@@ -33,6 +36,21 @@ export class AuthService {
   refresh(): Observable<Token> {
     return this.httpService.post<Token>(this.urls.refresh, { refresh: this.refreshToken })
       .pipe(this.setTokenPipeline);
+  }
+
+  forgot(user: User): Observable<unknown> {
+    return this.httpService.post(this.urls.forgot, { email: user.email });
+  }
+
+  passwordSet(uid: string, token: string, toNewPassword: string, toPasswordConfirm: string): Observable<unknown> {
+    return this.httpService.post(`${this.urls.passwordSet}/${uid}/${token}`, {
+      password: toNewPassword,
+      passwordConfirm: toPasswordConfirm
+    });
+  }
+
+  join(user: User): Observable<unknown> {
+    return this.httpService.post(this.urls.join, { email: user.email });
   }
 
   private setLocalStorageToken(token: Token): void {
