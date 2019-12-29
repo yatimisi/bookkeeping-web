@@ -1,16 +1,16 @@
 <!--Sidebar Menu-->
 <div class="sidebar-menu">
 
-  <!--Sidebar ul-->
-  <ul class="nav side-menu">
+  <ul class="nav side-menu action">
+    <app-option title="首頁" icon="home" url='/home' [more]="false"></app-option>
+    <app-option title="快速記帳" icon="create" url='/books/consume' [more]="false"></app-option>
+    <app-option title="新增帳本" icon="add_circle" url='/books/add' [more]="false"></app-option>
+  </ul>
 
-    <app-option [book]="dashboard" [more]="false" [level]="2"></app-option>
-
-    <!--Sidebar li-->
+  <ul class="nav side-menu book">
     <ng-container *ngFor="let book of bookService.books$ | async">
-      <app-option [book]="book" [level]="2"></app-option>
+      <app-option [title]="book.title" [bookID]="book.id" [url]="'/books/'+book.id"></app-option>
     </ng-container>
-
   </ul>
 
 </div>

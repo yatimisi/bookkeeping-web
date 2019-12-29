@@ -9,5 +9,13 @@
 
   ul {
     display: block;
+    padding: 1.25rem 0px;
+  }
+  .action {
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .book {
+    height: calc(100% - 66px - 180px);
+    overflow: scroll;
   }
 }

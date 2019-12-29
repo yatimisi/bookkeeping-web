@@ -11,8 +11,6 @@ import { BookService } from '@core/services/book.service';
 })
 export class MenuComponent implements OnInit {
 
-  dashboard = { title: '儀表板' } as Book;
-
   constructor(
     public bookService: BookService,
   ) { }

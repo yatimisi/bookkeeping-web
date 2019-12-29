@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,28 +10,27 @@ import { Book } from '@core/models/book.model';
   templateUrl: './option.component.html',
   styleUrls: ['./option.component.scss']
 })
-export class MenuOptionComponent implements OnInit {
+export class MenuOptionComponent {
 
-  @Input() book: Book;
-  @Input() level: number;
+  @Input() title: string;
+  @Input() icon: string;
+  @Input() bookID: string;
+  @Input() url: string;
   @Input() more = true;
 
   margin: SafeStyle;
 
   constructor(
-    private sanitizer: DomSanitizer,
     private router: Router,
     private route: ActivatedRoute,
   ) { }
 
-  ngOnInit() {
-    this.margin = this.sanitizer.bypassSecurityTrustStyle(`0px 0px 0px ${this.level * 15}px`);
-    this.level += 1;
+  conversionRouter(routerUrl: string) {
+    // this.router.navigate([routerUrl], { relativeTo: this.route });
+    console.log(routerUrl);
   }
-  title(id: number) {
-    this.router.navigate([(id ? `/books/${id}` : '/dashboard')], { relativeTo: this.route });
-  }
-  goMore(id: number) {
+
+  goMore(id: string) {
     // TODO: Detail, Delete, update book for new window.
     console.log('more', id);
   }

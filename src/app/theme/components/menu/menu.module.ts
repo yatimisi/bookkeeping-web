@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
 import { MenuComponent } from './menu.component';
 import { MenuOptionComponent } from './option/option.component';
 
@@ -12,6 +13,7 @@ import { MenuOptionComponent } from './option/option.component';
     CommonModule,
     MatIconModule,
     MatButtonModule,
+    MatRippleModule,
   ],
   exports: [MenuComponent],
   declarations: [MenuComponent, MenuOptionComponent],

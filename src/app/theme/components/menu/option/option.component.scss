@@ -1,24 +1,23 @@
-ul {
-  display: block;
-  background-color: #575757;
-}
-
 li {
   display: block;
   list-style: none;
   outline: none;
   cursor: pointer;
-  box-shadow: 0px 0px 6px 0px rgba(81, 76, 76, 0.9);
+  padding: 0px 1.25rem;
+  transition: all .12s cubic-bezier(.47,0,.745,.715);
+  // box-shadow: 0px 0px 6px 0px rgba(81, 76, 76, 0.9);
 
   span {
     display: block;
     align-items: center;
     display: flex;
-    font-size: 18px;
+    font-size: .875rem;
     line-height: 60px;
   }
 }
-
+li:hover, li:active {
+  background-color: #bbc2c9;
+}
 .down-icon {
   position: absolute;
   right: 55px;
