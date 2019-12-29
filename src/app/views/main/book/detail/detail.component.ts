@@ -83,7 +83,7 @@ export class BookDetailComponent implements OnInit {
       }
 
       this.bookService.partialUpdateBook(this.id, this.form.value).pipe(
-        delay(10000)
+        delay(1000)
       ).subscribe(
         result => {
           this.swalService.alert('成功', 'success');
