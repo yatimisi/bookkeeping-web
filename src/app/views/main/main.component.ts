@@ -7,7 +7,7 @@ import { BookService } from '@core/services/book.service';
   template: `
     <app-two-column-layout>
       <!-- <app-menu></app-menu> -->
-      <router-outlet>1</router-outlet>
+      <router-outlet></router-outlet>
     </app-two-column-layout>
   `,
 })

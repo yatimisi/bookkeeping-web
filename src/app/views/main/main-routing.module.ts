@@ -8,6 +8,15 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+    children: [
+      {
+        path: '404',
+        loadChildren: () => import('@views/main/not-found/not-found.module')
+          .then(module => module.NotFoundModule),
+      },
+      { path: '', redirectTo: '404', pathMatch: 'full' },
+      { path: '**', redirectTo: '404', pathMatch: 'full' },
+    ]
   },
 ];
 
