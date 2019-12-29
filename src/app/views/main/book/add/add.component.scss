@@ -1,0 +1,24 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 600px;
+  margin-top: 50px;
+  margin: 50px auto;
+  padding: 1.5rem 3.125rem;
+  width: auto;
+  background-color: #fff;
+  border-radius: 0.3125rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 0.125rem 0 rgba(0, 0, 0, 0.24);
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+span {
+  font-weight: 700;
+  font-size: 1.875rem;
+}

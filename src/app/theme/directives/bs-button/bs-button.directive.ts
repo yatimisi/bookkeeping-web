@@ -25,7 +25,7 @@ export class BsButtonDirective implements OnInit {
         this.renderer.addClass(this.el.nativeElement, 'btn-primary');
         break;
       case 'save':
-        this.renderer.addClass(this.el.nativeElement, 'btn-primary');
+        this.renderer.addClass(this.el.nativeElement, 'btn-success');
         break;
       case 'success':
         this.renderer.addClass(this.el.nativeElement, 'btn-success');

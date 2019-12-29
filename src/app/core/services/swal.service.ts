@@ -19,7 +19,7 @@ export class SwalService {
     complete: () => { }
   };
 
-  private swal = Swal.mixin({
+  swal = Swal.mixin({
     heightAuto: false,
   });
 

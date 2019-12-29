@@ -15,6 +15,11 @@ const routes: Routes = [
           .then(module => module.HomeModule),
       },
       {
+        path: 'books',
+        loadChildren: () => import('./book/book.module')
+          .then(module => module.BookModule),
+      },
+      {
         path: '404',
         loadChildren: () => import('./not-found/not-found.module')
           .then(module => module.NotFoundModule),
