@@ -13,6 +13,8 @@ const routes: Routes = [
     children: [
       { path: 'add', component: BookAddComponent },
       { path: ':bookID/detail', component: BookDetailComponent },
+      { path: ':bookID/authorities', component: BookDetailComponent },
+      { path: ':bookID/categories', component: BookDetailComponent },
       { path: '', redirectTo: 'add', pathMatch: 'full' },
       { path: '**', redirectTo: 'add', pathMatch: 'full' },
     ]

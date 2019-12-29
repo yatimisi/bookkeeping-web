@@ -111,6 +111,14 @@ export class BookDetailComponent implements OnInit {
     );
   }
 
+  onCategories() {
+    this.router.navigate(['..', 'categories'], { relativeTo: this.route });
+  }
+
+  onAuthorities() {
+    this.router.navigate(['..', 'categories'], { relativeTo: this.route });
+  }
+
   onDelete() {
     this.swalService.swal.fire({
       icon: 'question',
