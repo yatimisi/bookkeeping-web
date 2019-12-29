@@ -42,8 +42,13 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
           ));
         }
 
-        this.authService.logout();
-        this.router.navigate(['/auth']);
+        // Exclude the above.
+        // In addition to NoNavigatestatus, other http status codes are re-imported login.
+        const NoNavigatestatus = [400, 403];
+        if (NoNavigatestatus.indexOf(errorResponse.status) === -1) {
+          this.authService.logout();
+          this.router.navigate(['/auth/login']);
+        }
 
         return throwError(error);
       })

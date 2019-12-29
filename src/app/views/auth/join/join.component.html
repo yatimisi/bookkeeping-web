@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h3>註冊</h3>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="email" class="control-label">Email</label>
+      <div>
+        <input type="text" class="form-control"
+          formControlName="email" placeholder="Email"/>
+        <app-form-error ngDefaultControl [form]="form.controls['email']"></app-form-error>
+      </div>
+    </div>
+
+    <div style="text-align: center; padding-top: 15px; margin-bottom: 0px;">
+      <button customButton="success" type="submit" [disabled]="form.invalid || joining">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" [hidden]="!joining"></span>
+        註冊
+      </button>
+    </div>
+  </form>
+
+  <p class="seperator">或是</p>
+
+  <div>
+    <p class="join">已經有帳號了？ <a style="text-decoration: underline;cursor: pointer;" (click)="login()">登入</a></p>
+  </div>
+</div>
+
+
