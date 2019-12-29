@@ -15,6 +15,7 @@ export class BookService {
 
   private urls = {
     books: 'accountbooks',
+    leave: 'leave',
   };
 
   constructor(private httpService: HttpService) { }
@@ -42,5 +43,9 @@ export class BookService {
 
   deleteBook(id: number): Observable<unknown> {
     return this.httpService.delete(`${this.urls.books}/${id}`);
+  }
+
+  leaveBook(id: number): Observable<unknown> {
+    return this.httpService.post(`${this.urls.leave}/${id}`, {});
   }
 }

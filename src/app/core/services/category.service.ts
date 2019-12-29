@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
@@ -22,6 +23,12 @@ export class CategoryService {
   getCategories(): Observable<Category[]> {
     this.categories$ = this.httpService.get<Category[]>(this.urls.categories).pipe(shareReplay(1));
     return this.categories$;
+  }
+
+  getCategoriesFromBook(bookID = ''): Observable<Category[]> {
+    const params = new HttpParams()
+      .set('book', bookID);
+    return this.httpService.get<Category[]>(this.urls.categories, { params }).pipe(shareReplay(1));
   }
 
   getCategory(id: number): Observable<Category> {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
@@ -11,7 +12,7 @@ import { HttpService } from '@core/services/shared/http.service';
 })
 export class AuthorityService {
 
-  authority$: Observable<Authority[]>;
+  authorities$: Observable<Authority[]>;
 
   private urls = {
     authorities: 'authorities',
@@ -20,8 +21,14 @@ export class AuthorityService {
   constructor(private httpService: HttpService) { }
 
   getAuthorities(): Observable<Authority[]> {
-    this.authority$ = this.httpService.get<Authority[]>(this.urls.authorities).pipe(shareReplay(1));
-    return this.authority$;
+    this.authorities$ = this.httpService.get<Authority[]>(this.urls.authorities).pipe(shareReplay(1));
+    return this.authorities$;
+  }
+
+  getAuthoritiesFromBook(bookID = ''): Observable<Authority[]> {
+    const params = new HttpParams()
+      .set('book', bookID);
+    return this.httpService.get<Authority[]>(this.urls.authorities, { params }).pipe(shareReplay(1));
   }
 
   getAuthority(id: number): Observable<Authority> {

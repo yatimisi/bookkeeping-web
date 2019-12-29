@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
@@ -19,9 +20,23 @@ export class ConsumeService {
 
   constructor(private httpService: HttpService) { }
 
-  getConsumes(): Observable<Consume[]> {
-    this.consumes$ = this.httpService.get<Consume[]>(this.urls.consume).pipe(shareReplay(1));
+  getConsumes(isRepay = false): Observable<Consume[]> {
+    // tslint:disable-next-line: prefer-const
+    let params = new HttpParams();
+    params = params.append('is_repay', `${isRepay}`);
+
+    this.consumes$ = this.httpService.get<Consume[]>(this.urls.consume, { params }).pipe(shareReplay(1));
     return this.consumes$;
+  }
+
+  filterConsumes(bookID = '', isRepay = false): Observable<Consume[]> {
+    // tslint:disable-next-line: prefer-const
+    let params = new HttpParams();
+
+    params = (bookID !== '' ? params.append('book', bookID) : params);
+    params = params.append('is_repay', `${isRepay}`);
+
+    return this.httpService.get<Consume[]>(this.urls.consume, { params }).pipe(shareReplay(1));
   }
 
   getConsume(id: number): Observable<Consume> {

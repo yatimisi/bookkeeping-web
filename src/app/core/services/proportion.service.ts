@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
 import { Proportion } from '@core/models/proportion.model';
 import { HttpService } from '@core/services/shared/http.service';
@@ -17,7 +19,13 @@ export class ProportionService {
   constructor(private httpService: HttpService) { }
 
   getProportions(): Observable<Proportion[]> {
-    return this.httpService.get<Proportion[]>(this.urls.proportion);
+    return this.httpService.get<Proportion[]>(this.urls.proportion).pipe(shareReplay(1));
+  }
+
+  getProportionsFromConsume(consumeID = ''): Observable<Proportion[]> {
+    const params = new HttpParams()
+      .set('consume', consumeID);
+    return this.httpService.get<Proportion[]>(this.urls.proportion, { params }).pipe(shareReplay(1));
   }
 
   getProportion(id: number): Observable<Proportion> {
