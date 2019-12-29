@@ -6,13 +6,21 @@
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput [readonly]="!isEdit||sending" rows="10" formControlName="description" placeholder="詳細資訊"></textarea>
+      <textarea matInput [readonly]="!isEdit||sending" rows="10" formControlName="description"
+        placeholder="詳細資訊"></textarea>
     </mat-form-field>
-
-    <button customButton="edit" style="width: max-content;margin-left: auto;" type="button" [hidden]="isEdit"
-      (click)="onEdit()">
-      編輯
-    </button>
+    <span [hidden]="isEdit">
+      <span style="width: 50%;display: inline-block;">
+        <button customButton="delete" type="button" (click)="onDelete()">
+          刪除
+        </button>
+      </span>
+      <span style="width: 50%;display: inline-block;text-align: end;">
+        <button customButton="edit" type="button" (click)="onEdit()">
+          編輯
+        </button>
+      </span>
+    </span>
 
     <span style="width: max-content;margin-left: auto;" [hidden]="!isEdit">
       <button customButton="save" style="width: max-content;" type="submit" [disabled]="sending">
@@ -20,7 +28,8 @@
         儲存
       </button>
 
-      <button customButton="back" style="width: max-content;" type="button" [hidden]="sending" [disabled]="sending" (click)="onCancel()">
+      <button customButton="back" style="width: max-content;" type="button" [hidden]="sending" [disabled]="sending"
+        (click)="onCancel()">
         取消
       </button>
     </span>

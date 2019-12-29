@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -28,9 +28,18 @@ export class BookDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private bookService: BookService,
     private swalService: SwalService,
-  ) { }
+  ) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.build();
+      }
+    });
+  }
 
   ngOnInit() {
+    this.build();
+  }
+  build() {
     this.buildForm();
     this.id = +(this.route.snapshot.paramMap.get('bookID'));
     this.book$ = this.bookService.getBook(this.id);
@@ -41,6 +50,7 @@ export class BookDetailComponent implements OnInit {
 
   buildForm(data = {} as Book): void {
     this.form = this.formBuilder.group({
+      id: [data.id, []],
       title: [data.title, [Validators.required, Validators.maxLength(50)]],
       description: [(data.description ? data.description : ''), []],
     });
@@ -99,5 +109,34 @@ export class BookDetailComponent implements OnInit {
     this.book$.subscribe(
       result => this.buildForm(result)
     );
+  }
+
+  onDelete() {
+    this.swalService.swal.fire({
+      icon: 'question',
+      title: '確認要刪除嗎?',
+      showCancelButton: true,
+      confirmButtonColor: '#008000',
+      confirmButtonText: '確定',
+      cancelButtonColor: '#d33',
+      cancelButtonText: '取消',
+      heightAuto: false
+    }).then((send) => {
+      if (send.value) {
+        this.bookService.deleteBook(this.form.value.id).pipe(
+          delay(1000)
+        ).subscribe(
+          result => {
+            this.swalService.alert('成功', 'success');
+            this.bookService.getBooks();
+            this.router.navigate(['/'], { relativeTo: this.route });
+          },
+          err => {
+            this.swalService.alert('失敗', 'error', err);
+          },
+          () => { }
+        );
+      }
+    });
   }
 }
