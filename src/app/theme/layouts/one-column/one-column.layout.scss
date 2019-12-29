@@ -1,0 +1,20 @@
+div.container {
+  min-height: 100%;
+  min-width: 100%;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+  .header,
+  .body {
+    margin: 0px;
+    div {
+      padding: 0px;
+    }
+  }
+}
+
+.body {
+  height: calc(100% - 56px);
+  background-color: #333;
+  overflow: scroll;
+}

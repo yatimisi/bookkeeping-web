@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material';
 
 import { ComponentsModule } from './components/components.module';
 import { DirectivesModule } from './directives/directives.module';
@@ -23,7 +24,9 @@ const LOCAL_MODULES = [
   TemplatesModule,
 ];
 
-const THIRD_PARTY_MODULES = [];
+const THIRD_PARTY_MODULES = [
+  MatIconModule,
+];
 
 @NgModule({
   imports: [CommonModule],

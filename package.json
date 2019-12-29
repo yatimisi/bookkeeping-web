@@ -1,5 +1,5 @@
 {
-  "name": "bookkeeping-web",
+  "name": "shared-bookkeeping-web",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -14,23 +14,28 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.0.0",
+    "@angular/cdk": "^8.2.3",
     "@angular/common": "~8.0.0",
     "@angular/compiler": "~8.0.0",
     "@angular/core": "~8.0.0",
     "@angular/forms": "~8.0.0",
+    "@angular/material": "^8.2.3",
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
     "@auth0/angular-jwt": "^3.0.1",
     "@ridi/object-case-converter": "^2.0.4",
+    "bootstrap": "^4.4.1",
     "core-js": "^3.6.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0",
     "rxjs": "~6.4.0",
     "serialize-javascript": "^2.1.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.800.0",
+    "@angular-devkit/build-angular": "^0.803.21",
     "@angular/cli": "~8.0.1",
     "@angular/compiler-cli": "~8.0.0",
     "@angular/language-service": "~8.0.0",

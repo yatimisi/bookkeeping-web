@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-xs-12">
+      <nav class="navbar navbar-expand-sm navbar-dark">
+
+        <!--Left Logo-->
+        <a class="navbar-brand" (click)="conversionRouter('/')">
+          <mat-icon>create</mat-icon>
+          <span>Account Book</span>
+        </a>
+
+        <!--Navbar Toggler-->
+        <button class="navbar-toggler" [hidden]="localRoute === 'auth'" data-toggle="collapse" data-target="#navbarNav" type="button"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Right Features-->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+          <!--Language Menu-->
+          <div class="nav-item">
+
+            <!--Login Button-->
+            <button class="btn btn-success my-2 my-sm-0" type="button" [hidden]="localRoute === 'auth'" (click)="conversionRouter('/auth')">
+              登入
+            </button>
+          </div>
+
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

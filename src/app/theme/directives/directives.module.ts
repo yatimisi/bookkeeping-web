@@ -1,7 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
+import { BsButtonDirective } from './bs-button/bs-button.directive';
 
-const DIRECTIVES = [];
+
+const DIRECTIVES = [
+  BsButtonDirective,
+];
 
 @NgModule({
   exports: [...DIRECTIVES],

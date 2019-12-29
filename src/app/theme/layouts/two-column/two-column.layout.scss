@@ -1,0 +1,49 @@
+div.container {
+  min-height: 100%;
+  min-width: 100%;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+  .header,
+  .body {
+    div {
+      padding: 0px;
+    }
+  }
+  .header {
+    margin: 0px;
+  }
+}
+mat-sidenav {
+  width: 228.75px;
+}
+
+.mat-drawer {
+  background-color: #262626;
+}
+.sidenav-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.body {
+  height: calc(100% - 66px);
+  background-color: #333;
+  overflow: scroll;
+}
+
+.body.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.left {
+  flex: 0 0 228.75px;
+}
+
+.content {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0px;
+}
