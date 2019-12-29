@@ -1,0 +1,23 @@
+<div class="container">
+
+  <h3>重設密碼</h3>
+  <h6>輸入你註冊時使用的電子信箱</h6>
+  <h6>我們會以電子郵件寄送重設密碼的連結給你。</h6>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="email" class="control-label">Email</label>
+      <div>
+        <input type="text" class="form-control" formControlName="email" placeholder="Email" />
+        <app-form-error ngDefaultControl [form]="form.controls['email']"></app-form-error>
+      </div>
+    </div>
+
+    <div style="text-align: center; padding-top: 15px; margin-bottom: 0px;">
+      <button customButton="success" type="submit" [disabled]="form.invalid || sending">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" [hidden]="!sending"></span>
+        提交
+      </button>
+    </div>
+  </form>
+</div>

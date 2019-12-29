@@ -7,6 +7,7 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { JoinComponent } from './join/join.component';
+import { ForgotComponent } from './forgot/forgot.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { JoinComponent } from './join/join.component';
     LoginComponent,
     LogoutComponent,
     JoinComponent,
+    ForgotComponent,
   ],
 })
 export class AuthModule { }
