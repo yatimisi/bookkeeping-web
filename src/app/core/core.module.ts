@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpBodyInterceptor } from './interceptors/http-body.interceptor';
+import { RequestTimeLogHttpInterceptor } from './interceptors/request-time-log.interceptor';
 import { JWTModule } from './modules/jwt.module';
 
 
@@ -17,6 +18,11 @@ const PROVIDERS = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpBodyInterceptor,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: RequestTimeLogHttpInterceptor,
     multi: true
   },
 ];
