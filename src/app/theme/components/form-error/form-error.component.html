@@ -1,0 +1,5 @@
+<div class='head' *ngIf="showFieldHint()">
+  <div class='body' *ngFor="let item of form | formErrors">
+    * {{ item }}
+  </div>
+</div>

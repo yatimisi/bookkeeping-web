@@ -1,8 +1,12 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormErrorsPipe } from './form-errors.pipe';
 
-const PIPES = [];
+
+const PIPES = [
+  FormErrorsPipe,
+];
 
 @NgModule({
   imports: [CommonModule],

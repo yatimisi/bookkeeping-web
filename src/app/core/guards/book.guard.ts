@@ -21,7 +21,7 @@ export class BookGuard implements CanActivate {
   ): Observable<boolean> {
 
     const id = +route.paramMap.get('id');
-    console.log(id);
+
     return this.bookService.getBooks().pipe(
       map(books => books.map(book => book.id)),
       map(books => books.indexOf(id) !== -1)

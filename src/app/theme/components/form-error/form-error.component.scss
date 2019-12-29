@@ -1,0 +1,18 @@
+.head {
+  position: relative;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+  max-width: var(--max-width);
+}
+
+.body {
+  color: #721c24;
+  font-size: 14px;
+  text-align: left;
+}
