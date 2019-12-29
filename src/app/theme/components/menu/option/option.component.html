@@ -1,7 +1,7 @@
 <!--Sidebar li-->
 <li>
   <!--[class]="menuService.lockPath === sidebar.href ? 'active': ''"-->
-  <span class="title" [style.margin]="margin">
+  <span class="title font-color-Compared" [style.margin]="margin">
     <a (click)="title(book.id)">{{ (book.title.length>15)? (book.title | slice:0:15)+'..':(book.title) }}</a>
     <button mat-icon-button class="right-icon" [hidden]="!more" (click)="goMore(book.id)">
       <mat-icon>more_vert</mat-icon>

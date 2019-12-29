@@ -16,8 +16,8 @@ import { NavbarMod } from '@core/enums/navbar.mod.enums';
       </div>
     </div>
 
-    <mat-sidenav-container class="row body sidenav-container">
-      <mat-sidenav #sidenav [mode]="mode">
+    <mat-sidenav-container class="row body sidenav-container body-backcolor">
+      <mat-sidenav #sidenav [mode]="mode" [opened]="(mode === 'side')">
         <ng-content select="app-menu"></ng-content>
       </mat-sidenav>
 

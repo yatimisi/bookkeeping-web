@@ -6,6 +6,7 @@ import { catchError, mergeMap } from 'rxjs/operators';
 
 import { AuthService } from '@core/services/auth.service';
 import { environment } from '@env/environment';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -15,6 +16,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 
   constructor(
     private authService: AuthService,
+    private router: Router,
     private jwtInterceptor: JwtInterceptor,
   ) { }
 
@@ -39,6 +41,9 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
             () => this.jwtInterceptor.intercept(request, next)
           ));
         }
+
+        this.authService.logout();
+        this.router.navigate(['/auth']);
 
         return throwError(error);
       })

@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="col-xs-12">
-      <nav class="navbar navbar-expand navbar-light">
+      <nav class="navbar navbar-expand navbar-backcolor">
 
         <!--Left-->
         <div class="collapse navbar-collapse justify-content-start">
-          <div class="nav-item">
+          <div class="nav-item font-color-Compared">
             <button mat-icon-button (click)="switch()"><mat-icon>menu</mat-icon></button>
             <a class="slug" (click)="conversionRouter('/')">Account Book</a>
           </div>
@@ -19,7 +19,7 @@
               <!--Dropdown Button-->
               <a class="btn" id="dropdownMenuLink" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                 aria-expanded="false" *ngIf="(userService.me$ | async) else loading">
-                <span class="username">{{ (userService.me$ | async)?.username }}</span>
+                <span class="username font-color-Compared">{{ (userService.me$ | async)?.username }}</span>
 
                 <!--Hav Image-->
                 <ng-container *ngIf="(userService.me$ | async)?.profile; else nonImage">

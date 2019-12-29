@@ -13,7 +13,7 @@ import { NavbarMod } from '@core/enums/navbar.mod.enums';
         <app-navbar [navMod]="NavbarMod.nonAuthenticated"></app-navbar>
       </div>
     </div>
-    <div class="row body">
+    <div class="row body body-backcolor">
       <div class="col-12">
         <ng-content select="router-outlet"></ng-content>
       </div>
