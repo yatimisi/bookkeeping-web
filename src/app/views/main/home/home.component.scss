@@ -1,0 +1,20 @@
+.card {
+  max-width: 300px;
+  min-width: 300px;
+  margin: auto;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: all .12s cubic-bezier(.47,0,.745,.715);
+}
+
+.card:hover, .card:active {
+  background-color: #bbc2c9;
+}
+
+.row {
+  margin-top: 50px;
+}
+
+p {
+  margin: 0 16px;
+}

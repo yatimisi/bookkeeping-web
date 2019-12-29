@@ -26,12 +26,10 @@ export class MenuOptionComponent {
   ) { }
 
   conversionRouter(routerUrl: string) {
-    // this.router.navigate([routerUrl], { relativeTo: this.route });
-    console.log(routerUrl);
+    this.router.navigate([routerUrl], { relativeTo: this.route });
   }
 
   goMore(id: string) {
-    // TODO: Detail, Delete, update book for new window.
-    console.log('more', id);
+    this.router.navigate([id], { relativeTo: this.route });
   }
 }

@@ -10,11 +10,16 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {
+        path: 'home',
+        loadChildren: () => import('./home/home.module')
+          .then(module => module.HomeModule),
+      },
+      {
         path: '404',
-        loadChildren: () => import('@views/main/not-found/not-found.module')
+        loadChildren: () => import('./not-found/not-found.module')
           .then(module => module.NotFoundModule),
       },
-      { path: '', redirectTo: '404', pathMatch: 'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: '404', pathMatch: 'full' },
     ]
   },

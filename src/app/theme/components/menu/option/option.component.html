@@ -7,7 +7,7 @@
       <!-- <a (click)="title(book.id)">{{ (title.length>15)? (book.title | slice:0:15)+'..':(book.title) }}</a> -->
       <a>{{ (title.length>15)? (title | slice:0:15)+'..':(title) }}</a>
     </span>
-    <button mat-icon-button class="right-icon" [hidden]="!more" (click)="goMore(bookID)">
+    <button mat-icon-button class="right-icon" [hidden]="!more" (click)="goMore(url)">
       <mat-icon>more_vert</mat-icon>
     </button>
   </span>

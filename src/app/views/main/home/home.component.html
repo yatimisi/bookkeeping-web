@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row justify-content-start">
+    <ng-container *ngFor="let book of books$ | async">
+      <div class="col-lg-4 col-md-6 center">
+        <mat-card class="card" (click)="goBook(book.id)">
+          <mat-card-header>
+            <mat-card-title>{{book.title}}</mat-card-title>
+            <mat-card-subtitle>{{book.updateAt | date: 'yyyy/MM/dd'}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{ (book.description.length>30)? (book.description | slice:0:30)+'...':(book.description) }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </ng-container>
+
+  </div>
+</div>
