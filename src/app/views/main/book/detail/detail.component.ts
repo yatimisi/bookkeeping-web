@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 import { Book } from '@core/models/book.model';
@@ -9,14 +10,17 @@ import { SwalService } from '@core/services/swal.service';
 
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'],
+  selector: 'app-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.scss'],
 })
-export class BookAddComponent implements OnInit {
+export class BookDetailComponent implements OnInit {
 
-  public form: FormGroup;
-  public sending = false;
+  book$: Observable<Book>;
+  form: FormGroup;
+  isEdit = false;
+  sending = false;
+  id: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,6 +32,11 @@ export class BookAddComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+    this.id = +(this.route.snapshot.paramMap.get('bookID'));
+    this.book$ = this.bookService.getBook(this.id);
+    this.book$.subscribe(
+      result => this.buildForm(result)
+    );
   }
 
   buildForm(data = {} as Book): void {
@@ -63,21 +72,32 @@ export class BookAddComponent implements OnInit {
         return;
       }
 
-      this.bookService.createBook(this.form.value).pipe(
-        delay(1000)
+      this.bookService.partialUpdateBook(this.id, this.form.value).pipe(
+        delay(10000)
       ).subscribe(
         result => {
           this.swalService.alert('成功', 'success');
-          this.bookService.getBooks();
-          this.router.navigate(['../', result.id, 'detail'], { relativeTo: this.route });
+          this.book$ = this.bookService.getBook(this.id);
+          this.onCancel();
         },
         err => {
           this.swalService.alert('失敗', 'error', err);
           this.sending = false;
         },
-        () => { }
+        () => this.sending = false
       );
 
     });
+  }
+
+  onEdit() {
+    this.isEdit = true;
+  }
+
+  onCancel() {
+    this.isEdit = false;
+    this.book$.subscribe(
+      result => this.buildForm(result)
+    );
   }
 }

@@ -2,11 +2,11 @@
   <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmin()">
     <span class="font-color-normal">建立新帳本</span>
     <mat-form-field>
-      <input matInput formControlName="title" placeholder="帳本名稱" required>
+      <input matInput [readonly]="sending" formControlName="title" placeholder="帳本名稱" required>
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput rows="10" formControlName="description" placeholder="詳細資訊"></textarea>
+      <textarea matInput [readonly]="sending" rows="10" formControlName="description" placeholder="詳細資訊"></textarea>
     </mat-form-field>
 
     <button customButton="save" style="width: max-content;margin-left: auto;" type="submit" [disabled]="sending">

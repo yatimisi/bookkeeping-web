@@ -6,6 +6,7 @@ import { ThemeModule } from '@theme/theme.module';
 import { BookComponent } from './book.component';
 import { BookRoutingModule } from './book.routing.module';
 import { BookAddComponent } from './add/add.component';
+import { BookDetailComponent } from './detail/detail.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { BookAddComponent } from './add/add.component';
   declarations: [
     BookComponent,
     BookAddComponent,
+    BookDetailComponent,
   ],
 })
 export class BookModule { }

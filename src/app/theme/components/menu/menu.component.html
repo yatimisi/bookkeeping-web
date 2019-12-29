@@ -10,7 +10,7 @@
 
   <ul class="nav side-menu book">
     <ng-container *ngFor="let book of bookService.books$ | async">
-      <app-option [title]="book.title" [bookID]="book.id" [url]="'/books/'+book.id"></app-option>
+      <app-option [title]="book.title" [bookID]="book.id" [url]="'/books/'+book.id+'/detail'"></app-option>
     </ng-container>
   </ul>
 

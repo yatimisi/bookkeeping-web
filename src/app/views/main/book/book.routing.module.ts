@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { BookComponent } from './book.component';
 import { BookAddComponent } from './add/add.component';
+import { BookDetailComponent } from './detail/detail.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
     component: BookComponent,
     children: [
       { path: 'add', component: BookAddComponent },
+      { path: ':bookID/detail', component: BookDetailComponent },
       { path: '', redirectTo: 'add', pathMatch: 'full' },
       { path: '**', redirectTo: 'add', pathMatch: 'full' },
     ]
