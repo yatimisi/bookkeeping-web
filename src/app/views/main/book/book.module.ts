@@ -10,6 +10,9 @@ import { BookRoutingModule } from './book.routing.module';
 import { BookAddComponent } from './add/add.component';
 import { BookDetailComponent } from './detail/detail.component';
 import { BookCategoryComponent } from './category/category.component';
+import { BookAuthorityComponent } from './authority/authority.component';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 @NgModule({
@@ -20,12 +23,14 @@ import { BookCategoryComponent } from './category/category.component';
     MatInputModule,
     MatDividerModule,
     MatListModule,
+    MatSelectModule,
   ],
   declarations: [
     BookComponent,
     BookAddComponent,
     BookDetailComponent,
     BookCategoryComponent,
+    BookAuthorityComponent,
   ],
 })
 export class BookModule { }

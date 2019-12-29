@@ -1,0 +1,56 @@
+.nav {
+  margin-top: 50px;
+  min-width: 300px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-link {
+  cursor: pointer;
+  color: #4257b2;
+}
+
+.active {
+  color: #455358;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.5rem 3.125rem;
+  width: auto;
+  background-color: #fff;
+  border-radius: 0.3125rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 0.125rem 0 rgba(0, 0, 0, 0.24);
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-list {
+  margin-top: 25px;
+}
+
+.modify {
+  margin-left: 5px;
+  cursor: pointer;
+  color: #0069d9;
+}
+
+.delete {
+  margin-left: 5px;
+  cursor: pointer;
+  color: #ae4141;
+}

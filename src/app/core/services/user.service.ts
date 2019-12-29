@@ -4,6 +4,7 @@ import { shareReplay } from 'rxjs/operators';
 
 import { User } from '@core/models/user.model';
 import { HttpService } from '@core/services/shared/http.service';
+import { HttpParams } from '@angular/common/http';
 
 
 @Injectable({
@@ -22,6 +23,13 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     return this.httpService.get<User[]>(this.urls.users);
+  }
+
+  getUsersFromEmail(email = ''): Observable<User[]> {
+    const params = new HttpParams()
+      .set('email', email);
+    return this.httpService.get<User[]>(this.urls.users, { params }).pipe(shareReplay(1));
+
   }
 
   me(): Observable<User> {

@@ -5,6 +5,7 @@ import { BookComponent } from './book.component';
 import { BookAddComponent } from './add/add.component';
 import { BookDetailComponent } from './detail/detail.component';
 import { BookCategoryComponent } from './category/category.component';
+import { BookAuthorityComponent } from './authority/authority.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
     children: [
       { path: 'add', component: BookAddComponent },
       { path: ':bookID/detail', component: BookDetailComponent },
-      { path: ':bookID/authorities', component: BookCategoryComponent },
+      { path: ':bookID/authorities', component: BookAuthorityComponent },
       { path: ':bookID/categories', component: BookCategoryComponent },
       { path: '', redirectTo: 'add', pathMatch: 'full' },
       { path: '**', redirectTo: 'add', pathMatch: 'full' },
