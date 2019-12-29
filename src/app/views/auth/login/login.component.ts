@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from '@core/services/auth.service';
+import { BookService } from '@core/services/book.service';
 import { SwalService } from '@core/services/swal.service';
+import { UserService } from '@core/services/user.service';
 
 
 @Component({
@@ -19,7 +21,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
+    private bookService: BookService,
     private swalService: SwalService,
+    private userService: UserService,
     private formBuilder: FormBuilder
   ) { }
 
@@ -41,7 +45,10 @@ export class LoginComponent implements OnInit {
     this.logining = true;
 
     this.authService.login(this.form.value).subscribe(
-      result => { },
+      result => {
+        this.bookService.getBooks();
+        this.userService.me();
+      },
       err => {
         this.swalService.alert('帳號或密碼錯誤.', 'warning');
         this.form.controls.password.reset();

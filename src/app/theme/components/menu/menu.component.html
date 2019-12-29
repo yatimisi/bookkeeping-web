@@ -1,0 +1,16 @@
+<!--Sidebar Menu-->
+<div class="sidebar-menu">
+
+  <!--Sidebar ul-->
+  <ul class="nav side-menu">
+
+    <app-option [book]="dashboard" [more]="false" [level]="2"></app-option>
+
+    <!--Sidebar li-->
+    <ng-container *ngFor="let book of bookService.books$ | async">
+      <app-option [book]="book" [level]="2"></app-option>
+    </ng-container>
+
+  </ul>
+
+</div>

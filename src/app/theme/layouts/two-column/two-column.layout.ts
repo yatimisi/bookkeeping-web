@@ -12,13 +12,13 @@ import { NavbarMod } from '@core/enums/navbar.mod.enums';
   <div class="container">
     <div class="row header">
       <div class="col-12">
-        <app-navbar [navMod]="NavbarMod.isAuthenticated" (sidenav)="test()"></app-navbar>
+        <app-navbar [navMod]="NavbarMod.isAuthenticated" (sidenav)="onSidenav()"></app-navbar>
       </div>
     </div>
 
     <mat-sidenav-container class="row body sidenav-container">
       <mat-sidenav #sidenav [mode]="mode">
-
+        <ng-content select="app-menu"></ng-content>
       </mat-sidenav>
 
       <mat-sidenav-content>
@@ -40,7 +40,7 @@ export class TwoColumnLayoutComponent implements OnInit {
     this.mode = (this.breakpointObserver.isMatched('(max-width: 576px)') ? 'over' : 'side');
   }
 
-  test() {
+  onSidenav() {
     this.mode = (this.breakpointObserver.isMatched('(max-width: 576px)') ? 'over' : 'side');
     this.sidenav.toggle();
   }

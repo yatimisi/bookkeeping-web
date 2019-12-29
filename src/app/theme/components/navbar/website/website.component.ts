@@ -24,6 +24,9 @@ export class WebsiteComponent implements OnInit {
     if (!this.userService.me$) {
       this.userService.me$ = this.userService.me().pipe(shareReplay(1));
     }
+    this.userService.me$.subscribe(
+      result => console.log(result)
+    );
   }
 
   conversionRouter(routerUrl: string) {

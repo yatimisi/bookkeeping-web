@@ -22,9 +22,9 @@
                 <span class="username">{{ (userService.me$ | async)?.username }}</span>
 
                 <!--Hav Image-->
-                <ng-container *ngIf="(userService.me$ | async)?.image; else nonImage">
+                <ng-container *ngIf="(userService.me$ | async)?.profile; else nonImage">
                   <img id="navbarDropdownMenuLink" ngbDropdownToggle aria-haspopup="true" aria-expanded="false"
-                    alt="userImage" class="avatar ml-2" src="{{ (userService.me$  | async)?.image }}"
+                    alt="userImage" class="avatar ml-2" src="{{ (userService.me$  | async)?.profile }}"
                     onerror="this.src='assets/images/Non-picture.png'" />
                 </ng-container>
 
