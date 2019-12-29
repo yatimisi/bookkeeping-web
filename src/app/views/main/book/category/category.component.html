@@ -1,0 +1,48 @@
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" (click)="onInfo()">帳本資訊</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active">分類</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="onAuthorities()">權限</a>
+    </li>
+  </ul>
+  <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmin()">
+
+    <span>
+      <span style="width: 60%;display: inline-block;">
+        <mat-form-field>
+          <input matInput [readonly]="sending" formControlName="name" placeholder="分類名稱" required>
+        </mat-form-field>
+      </span>
+      <span style="width: 40%;display: inline-block;text-align: end;">
+        <button customButton="save" style="width: max-content;" type="submit" [disabled]="sending">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" [hidden]="!sending"></span>
+          儲存
+        </button>
+      </span>
+    </span>
+  </form>
+
+  <mat-list class="form-container">
+    <ng-container *ngFor="let category of categories$ | async;let first = first;">
+      <mat-divider *ngIf="!first"></mat-divider>
+      <mat-list-item>
+
+        <span style="width: 50%;display: inline-block;">
+          {{category.name}}
+        </span>
+        <span style="width: 50%;display: inline-block;text-align: end;">
+          <mat-icon class="modify" (click)="onModify(category.id)">create</mat-icon>
+          <mat-icon class="delete" (click)="onDelete(category.id)">delete</mat-icon>
+        </span>
+
+      </mat-list-item>
+    </ng-container>
+  </mat-list>
+
+
+</div>

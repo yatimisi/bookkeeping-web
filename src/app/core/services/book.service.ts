@@ -12,6 +12,7 @@ import { HttpService } from '@core/services/shared/http.service';
 export class BookService {
 
   books$: Observable<Book[]>;
+  book$: Observable<Book>;
 
   private urls = {
     books: 'accountbooks',
@@ -26,7 +27,8 @@ export class BookService {
   }
 
   getBook(id: number): Observable<Book> {
-    return this.httpService.get<Book>(`${this.urls.books}/${id}`);
+    this.book$ = this.httpService.get<Book>(`${this.urls.books}/${id}`).pipe(shareReplay(1));
+    return this.book$;
   }
 
   createBook(book: Book): Observable<Book> {

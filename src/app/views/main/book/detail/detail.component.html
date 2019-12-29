@@ -11,7 +11,6 @@
     </li>
   </ul>
   <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmin()">
-    <span class="font-color-normal">{{(book$ | async)?.title}}</span>
     <mat-form-field>
       <input matInput [readonly]="!isEdit||sending" formControlName="title" placeholder="帳本名稱" required>
     </mat-form-field>

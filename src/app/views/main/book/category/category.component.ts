@@ -4,21 +4,20 @@ import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { Book } from '@core/models/book.model';
-import { BookService } from '@core/services/book.service';
+import { Category } from '@core/models/category.model';
+import { CategoryService } from '@core/services/category.service';
 import { SwalService } from '@core/services/swal.service';
 
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss'],
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss'],
 })
-export class BookDetailComponent implements OnInit {
+export class BookCategoryComponent implements OnInit {
 
-  book$: Observable<Book>;
+  categories$: Observable<Category[]>;
   form: FormGroup;
-  isEdit = false;
   sending = false;
   id: number;
 
@@ -26,15 +25,9 @@ export class BookDetailComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private bookService: BookService,
+    private categoryService: CategoryService,
     private swalService: SwalService,
-  ) {
-    // this.router.events.subscribe((event: Event) => {
-    //   if (event instanceof NavigationEnd) {
-        // this.build();
-    //   }
-    // });
-  }
+  ) { }
 
   ngOnInit() {
     this.build();
@@ -42,17 +35,13 @@ export class BookDetailComponent implements OnInit {
   build() {
     this.buildForm();
     this.id = +(this.route.snapshot.paramMap.get('bookID'));
-    this.book$ = this.bookService.getBook(this.id);
-    this.book$.subscribe(
-      result => this.buildForm(result)
-    );
+    this.categories$ = this.categoryService.getCategoriesFromBook(`${this.id}`);
   }
 
-  buildForm(data = {} as Book): void {
+  buildForm(data = {} as Category): void {
     this.form = this.formBuilder.group({
-      id: [data.id, []],
-      title: [data.title, [Validators.required, Validators.maxLength(50)]],
-      description: [(data.description ? data.description : ''), []],
+      book: [+(this.route.snapshot.paramMap.get('bookID')), [Validators.required]],
+      name: [data.name, [Validators.required, Validators.maxLength(50)]],
     });
   }
 
@@ -82,44 +71,69 @@ export class BookDetailComponent implements OnInit {
         return;
       }
 
-      this.bookService.partialUpdateBook(this.id, this.form.value).pipe(
+      this.categoryService.createCategory(this.form.value).pipe(
         delay(1000)
       ).subscribe(
         result => {
           this.swalService.alert('成功', 'success');
-          this.book$ = this.bookService.getBook(this.id);
-          this.onCancel();
+          this.categories$ = this.categoryService.getCategoriesFromBook(`${this.id}`);
         },
         err => {
-          this.swalService.alert('失敗', 'error', err);
+          this.swalService.alert('失敗: 分類重複', 'error');
           this.sending = false;
         },
-        () => this.sending = false
+        () => {
+          this.sending = false;
+          this.form.controls.name.reset();
+        }
       );
 
     });
   }
 
-  onEdit() {
-    this.isEdit = true;
-  }
-
-  onCancel() {
-    this.isEdit = false;
-    this.book$.subscribe(
-      result => this.buildForm(result)
-    );
-  }
-
-  onCategories() {
-    this.router.navigate(['..', 'categories'], { relativeTo: this.route });
+  onInfo() {
+    this.router.navigate(['..', 'detail'], { relativeTo: this.route });
   }
 
   onAuthorities() {
     this.router.navigate(['..', 'authorities'], { relativeTo: this.route });
   }
 
-  onDelete() {
+  onModify(id: number) {
+    this.categoryService.getCategory(id).subscribe(
+      result => this.swalService.swal.fire({
+        title: '修改分類',
+        input: 'text',
+        inputValue: result.name,
+        showCancelButton: true,
+        confirmButtonColor: '#008000',
+        confirmButtonText: '確定',
+        cancelButtonColor: '#d33',
+        cancelButtonText: '取消',
+        heightAuto: false,
+        inputValidator: (value) => {
+          if (!value) {
+            return '請輸入些內容.';
+          }
+        }
+      }).then((send) => {
+        if (send.value) {
+          this.categoryService.partialUpdateCategory(id, { name: send.value } as Category).subscribe(
+            results => {
+              this.swalService.alert('成功', 'success');
+              this.categories$ = this.categoryService.getCategoriesFromBook(`${this.id}`);
+            },
+            err => {
+              this.swalService.alert('失敗', 'error', err);
+            },
+            () => { }
+          );
+        }
+      })
+    );
+  }
+
+  onDelete(id: number) {
     this.swalService.swal.fire({
       icon: 'question',
       title: '確認要刪除嗎?',
@@ -131,13 +145,13 @@ export class BookDetailComponent implements OnInit {
       heightAuto: false
     }).then((send) => {
       if (send.value) {
-        this.bookService.deleteBook(this.form.value.id).pipe(
+
+        this.categoryService.deleteCategory(id).pipe(
           delay(1000)
         ).subscribe(
           result => {
             this.swalService.alert('成功', 'success');
-            this.bookService.getBooks();
-            this.router.navigate(['/'], { relativeTo: this.route });
+            this.categories$ = this.categoryService.getCategoriesFromBook(`${this.id}`);
           },
           err => {
             this.swalService.alert('失敗', 'error', err);
@@ -147,4 +161,5 @@ export class BookDetailComponent implements OnInit {
       }
     });
   }
+
 }
